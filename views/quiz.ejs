@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body class="bg-light">
+    <!-- NAVIGATION BAR -->
+    <%- include('partials/nav.ejs') %>
+    <div class="container min-vh-100 d-flex flex-column  align-items-center mt-4">
+      <!-- Quiz Form -->
+      <form action="/result" method="POST" class="w-100" style="max-width: 800px;">
+        <% if(questions.length > 0) { %>
+          <% questions.forEach((question, number) => { %>
+            <div class="mb-4 bg-white shadow rounded p-4 w-100">
+              <h5 class="fw-bold"><%- number + 1 %>. <%- question.question %></h5>
+              <div class="row row-cols-1 row-cols-md-2 g-3">
+                <% question.answers.forEach((answer) => { %>
+                  <div class="col">
+                    <input type="radio" class="btn-check" name="question-<%= number + 1 %>" id="<%= answer %>" value="<%= answer %>" autocomplete="off">
+                    <label class="btn btn-outline-primary w-100 text-center" for="<%= answer %>"><%- answer %></label>
+                  </div>
+                <% }); %>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <h1>No questions available yet.</h1>
+        <% } %>
+        <!-- Hidden inputs for serialized questions and correctAnswers -->
+        <input type="hidden" name="questions" value='<%= JSON.stringify(questions) %>'>
+        <input type="hidden" name="correctAnswers" value='<%= JSON.stringify(correctAnswers) %>'>
+        <input type="hidden" name="difficulty" value='<%= difficulty %>'>
+        <!-- Buttons Row (Submit and Clear Answers) -->
+        <div class="d-flex gap-3 flex-column flex-sm-row mt-4 mb-4">
+          <button type="reset" class="btn btn-danger w-100 w-sm-auto">Clear Answers</button>
+          <button type="submit" class="btn btn-success w-100 w-sm-auto">Submit Quiz</button>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+      // Clear Answers Script
+      document.getElementById('clear-answers').addEventListener('click', function () {
+        // Uncheck all radio buttons
+        const radioButtons = document.querySelectorAll('#quiz-form input[type="radio"]');
+        radioButtons.forEach(radio => {
+          radio.checked = false;
+        });
+      });
+    </script>
+  </body>
+</html>

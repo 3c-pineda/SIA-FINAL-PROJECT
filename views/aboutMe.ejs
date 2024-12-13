@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- NAVIGATION BAR -->
+    <%- include('partials/nav.ejs') %>
+
+    <!-- MAIN CONTENT -->
+    <main class="container py-5">
+      <div class="row align-items-center">
+        <!-- IMAGE SECTION -->
+        <div class="col-md-6">
+          <div class="main-img">
+            <img src="/images/ako.jpg" alt="picture" class="img-fluid rounded">
+          </div>
+        </div>
+
+        <!-- TEXT SECTION -->
+        <div class="col-md-6">
+          <div class="main-txt">
+            <h1 class="display-4 text-primary">Hi, I am <span class="text-danger">Miko Pineda</span></h1>
+            <p class="lead">
+              I chose Japanese manga and anime as my quiz category because it's a huge part of my life and something I'm genuinely passionate about. It's not just entertainment for me—it's a unique blend of art, storytelling, and culture that sparks my imagination and curiosity. Manga and anime have taught me valuable lessons, introduced me to diverse characters, and transported me to worlds filled with adventure and emotion. Through this quiz, I hope to share that excitement and appreciation with others, helping them discover or deepen their understanding of this vibrant aspect of Japanese culture.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
